@@ -67,17 +67,18 @@ fun AddAppBar(wordViewModel: WordViewModel) {
 
 @Composable
 fun WordApp(wordViewModel: WordViewModel){
-    wordViewModel.insert(Word("hello"))
-    wordViewModel.insert(Word("world"))
+//    wordViewModel.deleteAll()
+    wordViewModel.insert(Word(word = "hello"))
+    wordViewModel.insert(Word(word = "world"))
     val words by wordViewModel.allWords.observeAsState(emptyList())
     val context = LocalContext.current
     val newWordActivityLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             result.data?.getStringExtra(EXTRA_REPLY)?.let { word ->
                 if (words.any { it.word == word }) {
-                    Toast.makeText(context, "Word already exists", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.already_exist, Toast.LENGTH_SHORT).show()
                 } else {
-                    wordViewModel.insert(Word(word))
+                    wordViewModel.insert(Word(word = word))
                 }
             }
         }
@@ -86,7 +87,8 @@ fun WordApp(wordViewModel: WordViewModel){
         topBar = { AddAppBar(wordViewModel) },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {  val intent = Intent(context, NewWordActivity::class.java)
+                onClick = {
+                    val intent = Intent(context, NewWordActivity::class.java)
                     newWordActivityLauncher.launch(intent)
                 }
             ) {
@@ -97,8 +99,7 @@ fun WordApp(wordViewModel: WordViewModel){
     ) { innerPadding ->
         val words by wordViewModel.allWords.observeAsState()
         LazyColumn(modifier = Modifier.padding(innerPadding)) {
-            items(words.orEmpty()) {
-                    word ->
+            items(words.orEmpty()) { word ->
                 ListItem(
                     title = word.word,
                     modifier = Modifier.fillMaxWidth(),

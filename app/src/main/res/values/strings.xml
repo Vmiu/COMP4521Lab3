@@ -5,4 +5,5 @@
     <string name="button_save">Save</string>
     <string name="input_field">Please input a word</string>
     <string name="delete">Delete</string>
+    <string name="already_exist">Word already exist</string>
 </resources>

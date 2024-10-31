@@ -9,9 +9,11 @@ class WordRepository(private val wordDao: WordDao) {
     suspend fun insert(word: Word) {
         wordDao.insert(word)
     }
+    @WorkerThread
     suspend fun deleteAll() {
         wordDao.deleteAll()
     }
+    @WorkerThread
     suspend fun deleteWord(word: String) {
         wordDao.deleteWord(word)
     }
