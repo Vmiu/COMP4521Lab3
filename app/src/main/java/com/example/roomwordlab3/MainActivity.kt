@@ -67,7 +67,7 @@ fun AddAppBar(wordViewModel: WordViewModel) {
 
 @Composable
 fun WordApp(wordViewModel: WordViewModel){
-//    wordViewModel.deleteAll()
+    wordViewModel.deleteAll()
     wordViewModel.insert(Word(word = "hello"))
     wordViewModel.insert(Word(word = "world"))
     val words by wordViewModel.allWords.observeAsState(emptyList())
