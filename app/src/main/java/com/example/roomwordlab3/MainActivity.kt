@@ -58,8 +58,8 @@ fun AddAppBar(wordViewModel: WordViewModel) {
     TopAppBar(
         title = { Text(stringResource(R.string.app_name)) },
         actions = {
-            IconButton(onClick = { wordViewModel.deleteAll() }) {
-                Icon(Icons.Default.Delete, contentDescription = "Delete All")
+            Button(onClick = { wordViewModel.deleteAll()}){
+                Icon(Icons.Default.Delete, contentDescription = "Delete_All")
             }
         }
     )
@@ -68,8 +68,8 @@ fun AddAppBar(wordViewModel: WordViewModel) {
 @Composable
 fun WordApp(wordViewModel: WordViewModel){
     wordViewModel.deleteAll()
-    wordViewModel.insert(Word(word = "hello"))
-    wordViewModel.insert(Word(word = "world"))
+    wordViewModel.insert(Word(word = "Hello"))
+    wordViewModel.insert(Word(word = "World!"))
     val words by wordViewModel.allWords.observeAsState(emptyList())
     val context = LocalContext.current
     val newWordActivityLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
