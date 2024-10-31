@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RoomWordLab3</string>
+    <string name="add_word">Add word</string>
+    <string name="title_activity_new_word">NewWordActivity</string>
+    <string name="button_save">Save</string>
+    <string name="input_field">Please input a word</string>
+    <string name="delete">Delete</string>
 </resources>
